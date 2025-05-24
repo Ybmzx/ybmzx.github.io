@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  ABC374 E-Sensor Optimization Dilemma2 · Question Mark&#39;s Blog
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Question Mark (Ybmzx)">
+<meta name="description" content="
+  E
+  
+    
+    Link to heading
+  
+
+
+考虑使用二分找出最大生产能力, 每次判断在只有 $X$ 日元的情况下是否能到达生产能力 $mid$.
+数据范围:
+
+$1 \le N \le 100$
+$1 \le A_i,B_i \le 100$
+$1 \le P_i,Q_i,X \le 10^7$
+
+因为一机器一天最多加工 $100$ 产品, 而一个机器最少也要一元钱, 我们最多拥有 $10^7$ 日元, 所以生产能力最多不超过 $100 \times 10^7 = 10^9$, 即生产能力的区间为 $[0, 10^9]$.
+
+接下来看如何计算出到达 $mid$ 生产能力的情况下需要的钱还最少.
+因为生产能力的定义为 $\displaystyle \min^{N}_{i=1} W_i$, 其中 $W_i$ 代表第 $i$ 道工序的产能. 可以发现到达 $mid$ 生产能力需要让每一道工序的产能都 $\ge mid$.
+可以发现优先采用性价比高的机器更好, 但是不能全部选用性价比高的机器, 如对于以下样例:
+
+$S_i$ 每天可处理 $5$ 个产品, 每台成本为 $5$ 日元.">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ABC374 E-Sensor Optimization Dilemma2">
+  <meta name="twitter:description" content="ELink to heading考虑使用二分找出最大生产能力, 每次判断在只有 $X$ 日元的情况下是否能到达生产能力 $mid$.
+数据范围:
+$1 \le N \le 100$ $1 \le A_i,B_i \le 100$ $1 \le P_i,Q_i,X \le 10^7$ 因为一机器一天最多加工 $100$ 产品, 而一个机器最少也要一元钱, 我们最多拥有 $10^7$ 日元, 所以生产能力最多不超过 $100 \times 10^7 = 10^9$, 即生产能力的区间为 $[0, 10^9]$.
+接下来看如何计算出到达 $mid$ 生产能力的情况下需要的钱还最少. 因为生产能力的定义为 $\displaystyle \min^{N}_{i=1} W_i$, 其中 $W_i$ 代表第 $i$ 道工序的产能. 可以发现到达 $mid$ 生产能力需要让每一道工序的产能都 $\ge mid$.
+可以发现优先采用性价比高的机器更好, 但是不能全部选用性价比高的机器, 如对于以下样例:
+$S_i$ 每天可处理 $5$ 个产品, 每台成本为 $5$ 日元.">
+
+<meta property="og:url" content="http://www.example.com/posts/abc374_e_sensor_optimization_dilemma2/">
+  <meta property="og:site_name" content="Question Mark&#39;s Blog">
+  <meta property="og:title" content="ABC374 E-Sensor Optimization Dilemma2">
+  <meta property="og:description" content="ELink to heading考虑使用二分找出最大生产能力, 每次判断在只有 $X$ 日元的情况下是否能到达生产能力 $mid$.
+数据范围:
+$1 \le N \le 100$ $1 \le A_i,B_i \le 100$ $1 \le P_i,Q_i,X \le 10^7$ 因为一机器一天最多加工 $100$ 产品, 而一个机器最少也要一元钱, 我们最多拥有 $10^7$ 日元, 所以生产能力最多不超过 $100 \times 10^7 = 10^9$, 即生产能力的区间为 $[0, 10^9]$.
+接下来看如何计算出到达 $mid$ 生产能力的情况下需要的钱还最少. 因为生产能力的定义为 $\displaystyle \min^{N}_{i=1} W_i$, 其中 $W_i$ 代表第 $i$ 道工序的产能. 可以发现到达 $mid$ 生产能力需要让每一道工序的产能都 $\ge mid$.
+可以发现优先采用性价比高的机器更好, 但是不能全部选用性价比高的机器, 如对于以下样例:
+$S_i$ 每天可处理 $5$ 个产品, 每台成本为 $5$ 日元.">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-24T13:19:26+08:00">
+    <meta property="article:modified_time" content="2025-05-24T13:19:26+08:00">
+    <meta property="article:tag" content="Algorithm">
+    <meta property="article:tag" content="Atcoder">
+
+
+
+
+<link rel="canonical" href="http://www.example.com/posts/abc374_e_sensor_optimization_dilemma2/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.7763f8bc6341ecf82378e867c285e1549abb063a899be313ccd25dbfcd24fa7d.css" integrity="sha256-d2P4vGNB7PgjeOhnwoXhVJq7BjqJm&#43;MTzNJdv80k&#43;n0=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://www.example.com/">
+      Question Mark&#39;s Blog
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://www.example.com/posts/abc374_e_sensor_optimization_dilemma2/">
+              ABC374 E-Sensor Optimization Dilemma2
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-05-24T13:19:26&#43;08:00">
+                May 24, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/algorithm/">Algorithm</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/atcoder/">Atcoder</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h2 id="e">
+  <a href="https://atcoder.jp/contests/abc374/tasks/abc374_e"  class="external-link" target="_blank" rel="noopener">E</a>
+  <a class="heading-link" href="#e">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<hr>
+<p>考虑使用二分找出最大生产能力, 每次判断在只有 $X$ 日元的情况下是否能到达生产能力 $mid$.</p>
+<p>数据范围:</p>
+<ul>
+<li>$1 \le N \le 100$</li>
+<li>$1 \le A_i,B_i \le 100$</li>
+<li>$1 \le P_i,Q_i,X \le 10^7$</li>
+</ul>
+<p>因为一机器一天最多加工 $100$ 产品, 而一个机器最少也要一元钱, 我们最多拥有 $10^7$ 日元, 所以生产能力最多不超过 $100 \times 10^7 = 10^9$, 即生产能力的区间为 $[0, 10^9]$.</p>
+<hr>
+<p>接下来看如何计算出到达 $mid$ 生产能力的情况下需要的钱还最少.
+因为生产能力的定义为 $\displaystyle \min^{N}_{i=1} W_i$, 其中 $W_i$ 代表第 $i$ 道工序的产能. 可以发现到达 $mid$ 生产能力需要让每一道工序的产能都 $\ge mid$.</p>
+<p>可以发现优先采用性价比高的机器更好, 但是不能全部选用性价比高的机器, 如对于以下样例:</p>
+<blockquote>
+<p>$S_i$ 每天可处理 $5$ 个产品, 每台成本为 $5$ 日元.</p>
+<p>$T_i$ 每天可处理 $2$ 个产品, 每台成本为 $3$ 日元.</p>
+<p>$mid = 2$</p></blockquote>
+<p>显然 $S_i$ 的性价比高, 但是选择一个 $S_i$ 需要 $5$ 日元, 而选择一个 $T_i$ 却只需要 $3$ 日元.
+不过我们可以发现, 在不超出需要产能的情况下, 优先选性价比高的机器更好.</p>
+<p>也就是假设满足产能大于 $mid$ 时最少花费的情况是买了 $n$ 个机器 $S$, $m$ 个机器 $T$, 其中 $S$ 的性价比大于 $T$, $S$ 的产量为 $SM$, $T$ 的产量为 $ST$. 此时满足 $SM \times n \le mid, SM \times (n + 1) \ge mid$, 也就是 $ST \times m \le SM$</p>
+<p>所以我们遍历用 $0$ 台产量低的机器 $T$ 的情况, $1$ 台 $T$ 的情况, $2$ 台 $T$ 的情况&hellip; 并从中找到最小花费即可.</p>
+<p>那么我们需要遍历多少种情况呢? 因为在不超出需要产能的情况下, 优先选性价比高的机器更好.
+假设性价比高的机器每天能处理的产品为最大值: $100$ (数据范围规定), 且性价比低的机器每天能处理的产品为最小值: $1$.
+此时:
+$$
+\begin{align}
+ST \times m &amp;\le SM \
+1 \times m &amp;\le 100 \
+m &amp;\le 100
+\end{align}
+$$
+所以需要遍历 $[0, 100]$ 的情况.</p>
+<h2 id="code">
+  CODE
+  <a class="heading-link" href="#code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#4c4f69;background-color:#eff1f5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic">#include</span> <span style="color:#9ca0b0;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#9ca0b0;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span><span style="color:#8839ef">using</span> <span style="color:#8839ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span><span style="color:#8839ef">const</span> <span style="color:#d20f39">int</span> N <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">110</span>;
+</span></span><span style="display:flex;"><span><span style="color:#d20f39">int</span> n, x, A[N], P[N], B[N], Q[N];
+</span></span><span style="display:flex;"><span><span style="color:#d20f39">signed</span> <span style="color:#1e66f5">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> n <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">for</span> (<span style="color:#d20f39">int</span> i <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>; i <span style="color:#04a5e5;font-weight:bold">&lt;</span> n; i <span style="color:#04a5e5;font-weight:bold">++</span>)
+</span></span><span style="display:flex;"><span>        cin <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> A[i] <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> P[i] <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> B[i] <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> Q[i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">auto</span> check <span style="color:#04a5e5;font-weight:bold">=</span> [<span style="color:#04a5e5;font-weight:bold">&amp;</span>](<span style="color:#d20f39">int</span> mid) <span style="color:#04a5e5;font-weight:bold">-&gt;</span> <span style="color:#d20f39">bool</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#9ca0b0;font-style:italic">// 全部工序花费最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>        <span style="color:#d20f39">int</span> w <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8839ef">for</span> (<span style="color:#d20f39">int</span> i <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>; i <span style="color:#04a5e5;font-weight:bold">&lt;</span> n; i <span style="color:#04a5e5;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#9ca0b0;font-style:italic">// 当前工序花费最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>            <span style="color:#d20f39">int</span> curr <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">1e18</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#8839ef">for</span> (<span style="color:#d20f39">int</span> cnt <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>; cnt <span style="color:#04a5e5;font-weight:bold">&lt;=</span> <span style="color:#fe640b">100</span>; cnt <span style="color:#04a5e5;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#d20f39">int</span> acnt <span style="color:#04a5e5;font-weight:bold">=</span> cnt;
+</span></span><span style="display:flex;"><span>                <span style="color:#9ca0b0;font-style:italic">// r = 买 acnt 台 A 的情况下还需要多少产能才能保证第 i 工序的产能 &gt;= mid
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>                <span style="color:#d20f39">int</span> r <span style="color:#04a5e5;font-weight:bold">=</span> max(<span style="color:#fe640b">0ll</span>, mid <span style="color:#04a5e5;font-weight:bold">-</span> acnt <span style="color:#04a5e5;font-weight:bold">*</span> A[i]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#9ca0b0;font-style:italic">// bcnt = 至少买 bcnt 台 B = r / B[i] 向上取整
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>                <span style="color:#d20f39">int</span> bcnt <span style="color:#04a5e5;font-weight:bold">=</span> (r <span style="color:#04a5e5;font-weight:bold">+</span> B[i] <span style="color:#04a5e5;font-weight:bold">-</span> <span style="color:#fe640b">1</span>) <span style="color:#04a5e5;font-weight:bold">/</span> B[i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                curr <span style="color:#04a5e5;font-weight:bold">=</span> min(curr, bcnt <span style="color:#04a5e5;font-weight:bold">*</span> Q[i] <span style="color:#04a5e5;font-weight:bold">+</span> acnt <span style="color:#04a5e5;font-weight:bold">*</span> P[i]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#9ca0b0;font-style:italic">// 上面的反过来
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>                bcnt <span style="color:#04a5e5;font-weight:bold">=</span> cnt;
+</span></span><span style="display:flex;"><span>                r <span style="color:#04a5e5;font-weight:bold">=</span> max(<span style="color:#fe640b">0ll</span>, mid <span style="color:#04a5e5;font-weight:bold">-</span> bcnt <span style="color:#04a5e5;font-weight:bold">*</span> B[i]);
+</span></span><span style="display:flex;"><span>                acnt <span style="color:#04a5e5;font-weight:bold">=</span> (r <span style="color:#04a5e5;font-weight:bold">+</span> A[i] <span style="color:#04a5e5;font-weight:bold">-</span> <span style="color:#fe640b">1</span>) <span style="color:#04a5e5;font-weight:bold">/</span> A[i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                curr <span style="color:#04a5e5;font-weight:bold">=</span> min(curr, bcnt <span style="color:#04a5e5;font-weight:bold">*</span> Q[i] <span style="color:#04a5e5;font-weight:bold">+</span> acnt <span style="color:#04a5e5;font-weight:bold">*</span> P[i]);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            w <span style="color:#04a5e5;font-weight:bold">+=</span> curr;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#9ca0b0;font-style:italic">// 当前最小花费 w 要小于等于 x 说明产能(mid)可能可以更大
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>        <span style="color:#9ca0b0;font-style:italic">// 即最大产能 &gt;= mid
+</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>        <span style="color:#8839ef">return</span> w <span style="color:#04a5e5;font-weight:bold">&lt;=</span> x;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#d20f39">int</span> l <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span> <span style="color:#04a5e5;font-weight:bold">-</span> <span style="color:#fe640b">1</span>, r <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">1e9</span> <span style="color:#04a5e5;font-weight:bold">+</span> <span style="color:#fe640b">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">while</span> (l <span style="color:#04a5e5;font-weight:bold">+</span> <span style="color:#fe640b">1</span> <span style="color:#04a5e5;font-weight:bold">!=</span> r) {
+</span></span><span style="display:flex;"><span>        <span style="color:#d20f39">int</span> mid <span style="color:#04a5e5;font-weight:bold">=</span> l <span style="color:#04a5e5;font-weight:bold">+</span> r <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> <span style="color:#fe640b">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8839ef">if</span> (check(mid)) l <span style="color:#04a5e5;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>        <span style="color:#8839ef">else</span> r <span style="color:#04a5e5;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    cout <span style="color:#04a5e5;font-weight:bold">&lt;&lt;</span> l;
+</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">return</span> <span style="color:#fe640b">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Question Mark (Ybmzx) 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
