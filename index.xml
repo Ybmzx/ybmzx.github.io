@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Question Mark&#39;s Blog</title>
-    <link>http://www.example.com/</link>
+    <link>/</link>
     <description>Recent content on Question Mark&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 24 May 2025 13:19:26 +0800</lastBuildDate>
-    <atom:link href="http://www.example.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ABC374 E-Sensor Optimization Dilemma2</title>
-      <link>http://www.example.com/posts/abc374_e_sensor_optimization_dilemma2/</link>
+      <link>/posts/abc374_e_sensor_optimization_dilemma2/</link>
       <pubDate>Sat, 24 May 2025 13:19:26 +0800</pubDate>
-      <guid>http://www.example.com/posts/abc374_e_sensor_optimization_dilemma2/</guid>
+      <guid>/posts/abc374_e_sensor_optimization_dilemma2/</guid>
       <description>&lt;h2 id=&#34;e&#34;&gt;&#xD;&#xA;  &lt;a href=&#34;https://atcoder.jp/contests/abc374/tasks/abc374_e&#34;  class=&#34;external-link&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;E&lt;/a&gt;&#xD;&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#e&#34;&gt;&#xD;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xD;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xD;&#xA;  &lt;/a&gt;&#xD;&#xA;&lt;/h2&gt;&#xD;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;考虑使用二分找出最大生产能力, 每次判断在只有 $X$ 日元的情况下是否能到达生产能力 $mid$.&lt;/p&gt;&#xA;&lt;p&gt;数据范围:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;$1 \le N \le 100$&lt;/li&gt;&#xA;&lt;li&gt;$1 \le A_i,B_i \le 100$&lt;/li&gt;&#xA;&lt;li&gt;$1 \le P_i,Q_i,X \le 10^7$&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;因为一机器一天最多加工 $100$ 产品, 而一个机器最少也要一元钱, 我们最多拥有 $10^7$ 日元, 所以生产能力最多不超过 $100 \times 10^7 = 10^9$, 即生产能力的区间为 $[0, 10^9]$.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;接下来看如何计算出到达 $mid$ 生产能力的情况下需要的钱还最少.&#xA;因为生产能力的定义为 $\displaystyle \min^{N}_{i=1} W_i$, 其中 $W_i$ 代表第 $i$ 道工序的产能. 可以发现到达 $mid$ 生产能力需要让每一道工序的产能都 $\ge mid$.&lt;/p&gt;&#xA;&lt;p&gt;可以发现优先采用性价比高的机器更好, 但是不能全部选用性价比高的机器, 如对于以下样例:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;$S_i$ 每天可处理 $5$ 个产品, 每台成本为 $5$ 日元.&lt;/p&gt;</description>
     </item>
   </channel>
