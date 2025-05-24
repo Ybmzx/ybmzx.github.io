@@ -152,6 +152,10 @@ $S_i$ 每天可处理 $5$ 个产品, 每台成本为 $5$ 日元.">
               <a class="navigation-link " href="/posts/">Blog</a>
             </li>
           
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about-license/">License</a>
+            </li>
+          
         
         
       </ul>
@@ -248,54 +252,54 @@ $$
     <span class="sr-only">Link to heading</span>
   </a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#4c4f69;background-color:#eff1f5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic">#include</span> <span style="color:#9ca0b0;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#9ca0b0;font-style:italic">
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span><span style="color:#8839ef">using</span> <span style="color:#8839ef">namespace</span> std;
-</span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic">#define int long long
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span><span style="color:#8839ef">const</span> <span style="color:#d20f39">int</span> N <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">110</span>;
-</span></span><span style="display:flex;"><span><span style="color:#d20f39">int</span> n, x, A[N], P[N], B[N], Q[N];
-</span></span><span style="display:flex;"><span><span style="color:#d20f39">signed</span> <span style="color:#1e66f5">main</span>() {
-</span></span><span style="display:flex;"><span>    cin <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> n <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> x;
-</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">for</span> (<span style="color:#d20f39">int</span> i <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>; i <span style="color:#04a5e5;font-weight:bold">&lt;</span> n; i <span style="color:#04a5e5;font-weight:bold">++</span>)
-</span></span><span style="display:flex;"><span>        cin <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> A[i] <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> P[i] <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> B[i] <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> Q[i];
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">const</span> <span style="color:#e78284">int</span> N <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">110</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> n, x, A[N], P[N], B[N], Q[N];
+</span></span><span style="display:flex;"><span><span style="color:#e78284">signed</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> n <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>; i <span style="color:#99d1db;font-weight:bold">&lt;</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>)
+</span></span><span style="display:flex;"><span>        cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> A[i] <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> P[i] <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> B[i] <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> Q[i];
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">auto</span> check <span style="color:#04a5e5;font-weight:bold">=</span> [<span style="color:#04a5e5;font-weight:bold">&amp;</span>](<span style="color:#d20f39">int</span> mid) <span style="color:#04a5e5;font-weight:bold">-&gt;</span> <span style="color:#d20f39">bool</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#9ca0b0;font-style:italic">// 全部工序花费最小值
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>        <span style="color:#d20f39">int</span> w <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#8839ef">for</span> (<span style="color:#d20f39">int</span> i <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>; i <span style="color:#04a5e5;font-weight:bold">&lt;</span> n; i <span style="color:#04a5e5;font-weight:bold">++</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#9ca0b0;font-style:italic">// 当前工序花费最小值
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>            <span style="color:#d20f39">int</span> curr <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">1e18</span>;
-</span></span><span style="display:flex;"><span>            <span style="color:#8839ef">for</span> (<span style="color:#d20f39">int</span> cnt <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span>; cnt <span style="color:#04a5e5;font-weight:bold">&lt;=</span> <span style="color:#fe640b">100</span>; cnt <span style="color:#04a5e5;font-weight:bold">++</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#d20f39">int</span> acnt <span style="color:#04a5e5;font-weight:bold">=</span> cnt;
-</span></span><span style="display:flex;"><span>                <span style="color:#9ca0b0;font-style:italic">// r = 买 acnt 台 A 的情况下还需要多少产能才能保证第 i 工序的产能 &gt;= mid
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>                <span style="color:#d20f39">int</span> r <span style="color:#04a5e5;font-weight:bold">=</span> max(<span style="color:#fe640b">0ll</span>, mid <span style="color:#04a5e5;font-weight:bold">-</span> acnt <span style="color:#04a5e5;font-weight:bold">*</span> A[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">auto</span> check <span style="color:#99d1db;font-weight:bold">=</span> [<span style="color:#99d1db;font-weight:bold">&amp;</span>](<span style="color:#e78284">int</span> mid) <span style="color:#99d1db;font-weight:bold">-&gt;</span> <span style="color:#e78284">bool</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#737994;font-style:italic">// 全部工序花费最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        <span style="color:#e78284">int</span> w <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>; i <span style="color:#99d1db;font-weight:bold">&lt;</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#737994;font-style:italic">// 当前工序花费最小值
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>            <span style="color:#e78284">int</span> curr <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1e18</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> cnt <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>; cnt <span style="color:#99d1db;font-weight:bold">&lt;=</span> <span style="color:#ef9f76">100</span>; cnt <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#e78284">int</span> acnt <span style="color:#99d1db;font-weight:bold">=</span> cnt;
+</span></span><span style="display:flex;"><span>                <span style="color:#737994;font-style:italic">// r = 买 acnt 台 A 的情况下还需要多少产能才能保证第 i 工序的产能 &gt;= mid
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>                <span style="color:#e78284">int</span> r <span style="color:#99d1db;font-weight:bold">=</span> max(<span style="color:#ef9f76">0ll</span>, mid <span style="color:#99d1db;font-weight:bold">-</span> acnt <span style="color:#99d1db;font-weight:bold">*</span> A[i]);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                <span style="color:#9ca0b0;font-style:italic">// bcnt = 至少买 bcnt 台 B = r / B[i] 向上取整
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>                <span style="color:#d20f39">int</span> bcnt <span style="color:#04a5e5;font-weight:bold">=</span> (r <span style="color:#04a5e5;font-weight:bold">+</span> B[i] <span style="color:#04a5e5;font-weight:bold">-</span> <span style="color:#fe640b">1</span>) <span style="color:#04a5e5;font-weight:bold">/</span> B[i];
+</span></span><span style="display:flex;"><span>                <span style="color:#737994;font-style:italic">// bcnt = 至少买 bcnt 台 B = r / B[i] 向上取整
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>                <span style="color:#e78284">int</span> bcnt <span style="color:#99d1db;font-weight:bold">=</span> (r <span style="color:#99d1db;font-weight:bold">+</span> B[i] <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>) <span style="color:#99d1db;font-weight:bold">/</span> B[i];
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                curr <span style="color:#04a5e5;font-weight:bold">=</span> min(curr, bcnt <span style="color:#04a5e5;font-weight:bold">*</span> Q[i] <span style="color:#04a5e5;font-weight:bold">+</span> acnt <span style="color:#04a5e5;font-weight:bold">*</span> P[i]);
+</span></span><span style="display:flex;"><span>                curr <span style="color:#99d1db;font-weight:bold">=</span> min(curr, bcnt <span style="color:#99d1db;font-weight:bold">*</span> Q[i] <span style="color:#99d1db;font-weight:bold">+</span> acnt <span style="color:#99d1db;font-weight:bold">*</span> P[i]);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                <span style="color:#9ca0b0;font-style:italic">// 上面的反过来
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>                bcnt <span style="color:#04a5e5;font-weight:bold">=</span> cnt;
-</span></span><span style="display:flex;"><span>                r <span style="color:#04a5e5;font-weight:bold">=</span> max(<span style="color:#fe640b">0ll</span>, mid <span style="color:#04a5e5;font-weight:bold">-</span> bcnt <span style="color:#04a5e5;font-weight:bold">*</span> B[i]);
-</span></span><span style="display:flex;"><span>                acnt <span style="color:#04a5e5;font-weight:bold">=</span> (r <span style="color:#04a5e5;font-weight:bold">+</span> A[i] <span style="color:#04a5e5;font-weight:bold">-</span> <span style="color:#fe640b">1</span>) <span style="color:#04a5e5;font-weight:bold">/</span> A[i];
+</span></span><span style="display:flex;"><span>                <span style="color:#737994;font-style:italic">// 上面的反过来
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>                bcnt <span style="color:#99d1db;font-weight:bold">=</span> cnt;
+</span></span><span style="display:flex;"><span>                r <span style="color:#99d1db;font-weight:bold">=</span> max(<span style="color:#ef9f76">0ll</span>, mid <span style="color:#99d1db;font-weight:bold">-</span> bcnt <span style="color:#99d1db;font-weight:bold">*</span> B[i]);
+</span></span><span style="display:flex;"><span>                acnt <span style="color:#99d1db;font-weight:bold">=</span> (r <span style="color:#99d1db;font-weight:bold">+</span> A[i] <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>) <span style="color:#99d1db;font-weight:bold">/</span> A[i];
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                curr <span style="color:#04a5e5;font-weight:bold">=</span> min(curr, bcnt <span style="color:#04a5e5;font-weight:bold">*</span> Q[i] <span style="color:#04a5e5;font-weight:bold">+</span> acnt <span style="color:#04a5e5;font-weight:bold">*</span> P[i]);
+</span></span><span style="display:flex;"><span>                curr <span style="color:#99d1db;font-weight:bold">=</span> min(curr, bcnt <span style="color:#99d1db;font-weight:bold">*</span> Q[i] <span style="color:#99d1db;font-weight:bold">+</span> acnt <span style="color:#99d1db;font-weight:bold">*</span> P[i]);
 </span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            w <span style="color:#04a5e5;font-weight:bold">+=</span> curr;
+</span></span><span style="display:flex;"><span>            w <span style="color:#99d1db;font-weight:bold">+=</span> curr;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#9ca0b0;font-style:italic">// 当前最小花费 w 要小于等于 x 说明产能(mid)可能可以更大
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>        <span style="color:#9ca0b0;font-style:italic">// 即最大产能 &gt;= mid
-</span></span></span><span style="display:flex;"><span><span style="color:#9ca0b0;font-style:italic"></span>        <span style="color:#8839ef">return</span> w <span style="color:#04a5e5;font-weight:bold">&lt;=</span> x;
+</span></span><span style="display:flex;"><span>        <span style="color:#737994;font-style:italic">// 当前最小花费 w 要小于等于 x 说明产能(mid)可能可以更大
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        <span style="color:#737994;font-style:italic">// 即最大产能 &gt;= mid
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        <span style="color:#ca9ee6">return</span> w <span style="color:#99d1db;font-weight:bold">&lt;=</span> x;
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#d20f39">int</span> l <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">0</span> <span style="color:#04a5e5;font-weight:bold">-</span> <span style="color:#fe640b">1</span>, r <span style="color:#04a5e5;font-weight:bold">=</span> <span style="color:#fe640b">1e9</span> <span style="color:#04a5e5;font-weight:bold">+</span> <span style="color:#fe640b">1</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">while</span> (l <span style="color:#04a5e5;font-weight:bold">+</span> <span style="color:#fe640b">1</span> <span style="color:#04a5e5;font-weight:bold">!=</span> r) {
-</span></span><span style="display:flex;"><span>        <span style="color:#d20f39">int</span> mid <span style="color:#04a5e5;font-weight:bold">=</span> l <span style="color:#04a5e5;font-weight:bold">+</span> r <span style="color:#04a5e5;font-weight:bold">&gt;&gt;</span> <span style="color:#fe640b">1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#8839ef">if</span> (check(mid)) l <span style="color:#04a5e5;font-weight:bold">=</span> mid;
-</span></span><span style="display:flex;"><span>        <span style="color:#8839ef">else</span> r <span style="color:#04a5e5;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>    <span style="color:#e78284">int</span> l <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span> <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>, r <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1e9</span> <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">while</span> (l <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span> <span style="color:#99d1db;font-weight:bold">!=</span> r) {
+</span></span><span style="display:flex;"><span>        <span style="color:#e78284">int</span> mid <span style="color:#99d1db;font-weight:bold">=</span> l <span style="color:#99d1db;font-weight:bold">+</span> r <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> <span style="color:#ef9f76">1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">if</span> (check(mid)) l <span style="color:#99d1db;font-weight:bold">=</span> mid;
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">else</span> r <span style="color:#99d1db;font-weight:bold">=</span> mid;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    cout <span style="color:#04a5e5;font-weight:bold">&lt;&lt;</span> l;
-</span></span><span style="display:flex;"><span>    <span style="color:#8839ef">return</span> <span style="color:#fe640b">0</span>;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> l;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><hr>
 <p>本文写于 2024/10/9 16:57, 于 2025/5/24 发布, 本文采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en"  class="external-link" target="_blank" rel="noopener">CC BY-SA 4.0</a> 许可协议进行许可.</p>
