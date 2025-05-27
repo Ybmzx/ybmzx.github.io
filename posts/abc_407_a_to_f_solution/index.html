@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  ABC 407 A~F solution · Question Mark&#39;s Blog
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Question Mark (Ybmzx)">
+<meta name="description" content="
+  A - Approximation
+  
+    
+    Link to heading
+  
+
+显然对于 $\dfrac A B$ 来说离其最近的整数是 $\lfloor \dfrac A B \rfloor$ 或者 $\lceil \dfrac A B \rceil$.
+
+  CODE
+  
+    
+    Link to heading
+  
+
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;math.h&gt;
+using namespace std;
+double a, b;
+int main() {
+    cin &gt;&gt; a &gt;&gt; b;
+    double c = a / b;
+
+    if (ceil(c) - c &gt; c - floor(c)) cout &lt;&lt; floor(c);
+    else cout &lt;&lt; ceil(c);
+
+    return 0;
+}
+
+
+  B - P(X or Y)
+  
+    
+    Link to heading
+  
+
+枚举每一种可能方案, 然后判断满足题目中条件的方案的个数 $res$, 一共有 $6 \times 6 = 36$ 种可能方案, 所以答案是 $\dfrac {res} {36}$">
+<meta name="keywords" content="blog,developer,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ABC 407 A~F solution">
+  <meta name="twitter:description" content="A - ApproximationLink to heading显然对于 $\dfrac A B$ 来说离其最近的整数是 $\lfloor \dfrac A B \rfloor$ 或者 $\lceil \dfrac A B \rceil$.
+CODELink to heading#include &lt;iostream&gt; #include &lt;cstring&gt; #include &lt;algorithm&gt; #include &lt;vector&gt; #include &lt;math.h&gt; using namespace std; double a, b; int main() { cin &gt;&gt; a &gt;&gt; b; double c = a / b; if (ceil(c) - c &gt; c - floor(c)) cout &lt;&lt; floor(c); else cout &lt;&lt; ceil(c); return 0; } B - P(X or Y)Link to heading枚举每一种可能方案, 然后判断满足题目中条件的方案的个数 $res$, 一共有 $6 \times 6 = 36$ 种可能方案, 所以答案是 $\dfrac {res} {36}$">
+
+<meta property="og:url" content="/posts/abc_407_a_to_f_solution/">
+  <meta property="og:site_name" content="Question Mark&#39;s Blog">
+  <meta property="og:title" content="ABC 407 A~F solution">
+  <meta property="og:description" content="A - ApproximationLink to heading显然对于 $\dfrac A B$ 来说离其最近的整数是 $\lfloor \dfrac A B \rfloor$ 或者 $\lceil \dfrac A B \rceil$.
+CODELink to heading#include &lt;iostream&gt; #include &lt;cstring&gt; #include &lt;algorithm&gt; #include &lt;vector&gt; #include &lt;math.h&gt; using namespace std; double a, b; int main() { cin &gt;&gt; a &gt;&gt; b; double c = a / b; if (ceil(c) - c &gt; c - floor(c)) cout &lt;&lt; floor(c); else cout &lt;&lt; ceil(c); return 0; } B - P(X or Y)Link to heading枚举每一种可能方案, 然后判断满足题目中条件的方案的个数 $res$, 一共有 $6 \times 6 = 36$ 种可能方案, 所以答案是 $\dfrac {res} {36}$">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-27T13:43:31+08:00">
+    <meta property="article:modified_time" content="2025-05-27T13:43:31+08:00">
+    <meta property="article:tag" content="Algorithm">
+    <meta property="article:tag" content="Atcoder">
+    <meta property="article:tag" content="Contest">
+
+
+
+
+<link rel="canonical" href="/posts/abc_407_a_to_f_solution/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.7763f8bc6341ecf82378e867c285e1549abb063a899be313ccd25dbfcd24fa7d.css" integrity="sha256-d2P4vGNB7PgjeOhnwoXhVJq7BjqJm&#43;MTzNJdv80k&#43;n0=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.a00e6364bacbc8266ad1cc81230774a1397198f8cfb7bcba29b7d6fcb54ce57f.css" integrity="sha256-oA5jZLrLyCZq0cyBIwd0oTlxmPjPt7y6KbfW/LVM5X8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="/">
+      Question Mark&#39;s Blog
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about-license/">License</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="/posts/abc_407_a_to_f_solution/">
+              ABC 407 A~F solution
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2025-05-27T13:43:31&#43;08:00">
+                May 27, 2025
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              8-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/algorithm/">Algorithm</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/atcoder/">Atcoder</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/contest/">Contest</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="a---approximation">
+  <a href="https://atcoder.jp/contests/abc407/tasks/abc407_a"  class="external-link" target="_blank" rel="noopener">A - Approximation</a>
+  <a class="heading-link" href="#a---approximation">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>显然对于 $\dfrac A B$ 来说离其最近的整数是 $\lfloor \dfrac A B \rfloor$ 或者 $\lceil \dfrac A B \rceil$.</p>
+<h2 id="code">
+  CODE
+  <a class="heading-link" href="#code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;cstring&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;math.h&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">double</span> a, b;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> a <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> b;
+</span></span><span style="display:flex;"><span>    <span style="color:#e78284">double</span> c <span style="color:#99d1db;font-weight:bold">=</span> a <span style="color:#99d1db;font-weight:bold">/</span> b;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">if</span> (ceil(c) <span style="color:#99d1db;font-weight:bold">-</span> c <span style="color:#99d1db;font-weight:bold">&gt;</span> c <span style="color:#99d1db;font-weight:bold">-</span> floor(c)) cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> floor(c);
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">else</span> cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> ceil(c);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="b---px-or-y">
+  <a href="https://atcoder.jp/contests/abc407/tasks/abc407_b"  class="external-link" target="_blank" rel="noopener">B - P(X or Y)</a>
+  <a class="heading-link" href="#b---px-or-y">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>枚举每一种可能方案, 然后判断满足题目中条件的方案的个数 $res$, 一共有 $6 \times 6 = 36$ 种可能方案, 所以答案是 $\dfrac {res} {36}$</p>
+<h2 id="code-1">
+  CODE
+  <a class="heading-link" href="#code-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;cstring&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iomanip&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> x, y;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> x <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> y;
+</span></span><span style="display:flex;"><span>    <span style="color:#e78284">int</span> res <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> <span style="color:#ef9f76">6</span>; i <span style="color:#99d1db;font-weight:bold">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> j <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; j <span style="color:#99d1db;font-weight:bold">&lt;=</span> <span style="color:#ef9f76">6</span>; j <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ca9ee6">if</span> (i <span style="color:#99d1db;font-weight:bold">+</span> j <span style="color:#99d1db;font-weight:bold">&gt;=</span> x <span style="color:#99d1db;font-weight:bold">||</span> abs(i <span style="color:#99d1db;font-weight:bold">-</span> j) <span style="color:#99d1db;font-weight:bold">&gt;=</span> y) res <span style="color:#99d1db;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#737994;font-style:italic">// 输出位数多点, 防止误差
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> fixed <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> setprecision(<span style="color:#ef9f76">20</span>) <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> (<span style="color:#e78284">double</span>)res <span style="color:#99d1db;font-weight:bold">/</span> <span style="color:#ef9f76">36.0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="c---security-2">
+  <a href="https://atcoder.jp/contests/abc407/tasks/abc407_c"  class="external-link" target="_blank" rel="noopener">C - Security 2</a>
+  <a class="heading-link" href="#c---security-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>我们反向考虑, 即考虑将字符串 $S$ 转为空字符串需要多少步, 操作也反过来:</p>
+<ul>
+<li>操作 $A$, 若字符串最后一位为 $0$, 那么将其删去.</li>
+<li>操作 $B$, 将字符串中的所有数字减小 $1$, 特别地, $0$ 转为 $9$.</li>
+</ul>
+<p>那么对于一个字符串 $S$, 如果它的最后一位不为 $0$, 那么它只能执行操作 $B$.
+如果它的最后一位为 $0$, 它可以删去最后一位或者将最后一位转为 $9$, 如果将最后一位转为 $9$, 显然又要再把 $9$ 转为 $0$ 后才能执行删一位的操作, 操作次数更多.</p>
+<p>所以我们的思路是将字符串的最后一位降为 $0$ 后删去该数字.</p>
+<p>这时又有另一个问题, 操作 $B$ 是将字符串中所有数字都减小 $1$, 如果每次都执行这样的操作显然会 TLE.
+但是我们发现, 我们每次对 $S$ 最后一位操作时都用不到其他位的数, 所以我们可以维护一个变量 $total$, 表示我们一共执行了多少次操作 $B$. 然后每次删去最后一位数后, 对新的最后一位一次性执行 $total$ 次操作 $B$.</p>
+<p>如何在 $O(1)$ 时间执行 $total$ 次操作 $B$ ?
+我们可以发现当执行 $total$ 次操作 $B$ 时, 相当于 $(S_i - total) \bmod 10$, 但在 C++ 中, 负数的取余和数学中负数的取余不太一样, 所以我们要保证 $S_i - total \ge 0$, 解决方法是加上一个可以被 $10$ 整除的数 $k$, 且 $k \ge (S_i - total)$.
+我们可以发现一个数执行 $10$ 次操作 $B$ 和不执行是一样的, 因为转了一圈又回来了, 所以执行 $total$ 次操作 $B$ 相当于执行 $total \bmod 10$ 次操作 $B$, 即 $$(S_i - total) \bmod 10 = (S_i - (total \bmod 10)) \bmod 10$$
+$S_i - (total \bmod 10)$ 一定大于 $-10$, 所以 $k$ 为 $10$ 就可以了.</p>
+<h2 id="code-2">
+  CODE
+  <a class="heading-link" href="#code-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;cstring&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>string s;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> total <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> res <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">void</span> <span style="color:#8caaee">f</span>(<span style="color:#e78284">int</span> pos) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">if</span> (pos <span style="color:#99d1db;font-weight:bold">==</span> <span style="color:#99d1db;font-weight:bold">-</span><span style="color:#ef9f76">1</span>) <span style="color:#ca9ee6">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e78284">int</span> current <span style="color:#99d1db;font-weight:bold">=</span> s[pos] <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#a6d189">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>    current <span style="color:#99d1db;font-weight:bold">=</span> ((current <span style="color:#99d1db;font-weight:bold">-</span> total <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">10</span>) <span style="color:#99d1db;font-weight:bold">%</span> <span style="color:#ef9f76">10</span>); <span style="color:#737994;font-style:italic">// 执行 B 操作
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    res <span style="color:#99d1db;font-weight:bold">+=</span> current <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>; <span style="color:#737994;font-style:italic">// 一共要执行 current 次 B 操作, 还有删去最后一位的 A 操作.
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    total <span style="color:#99d1db;font-weight:bold">=</span> (current <span style="color:#99d1db;font-weight:bold">+</span> total) <span style="color:#99d1db;font-weight:bold">%</span> <span style="color:#ef9f76">10</span>; <span style="color:#737994;font-style:italic">// 提前计算 total % 10
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    f(pos <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e78284">signed</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> s;
+</span></span><span style="display:flex;"><span>    f(s.size() <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="d---domino-covering-xor">
+  <a href="https://atcoder.jp/contests/abc407/tasks/abc407_d"  class="external-link" target="_blank" rel="noopener">D - Domino Covering XOR</a>
+  <a class="heading-link" href="#d---domino-covering-xor">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>$HW \le 20$ 数据范围很小, 直接暴力即可.
+但是我们发现统计有点麻烦, 每次都要遍历整个图, 优化方法为:
+根据异或操作的定义我们可以发现 $x = x \oplus y \oplus y$, 也就是说, 一个数异或两次同样的数, 相当于没有异或过. 也就是说, 如果我们先将图中所有格子的异或值 $tot$ 计算出来, 然后在 DFS 的过程中, 对每个放了多米诺骨牌的格子再进行一次异或, 就相当于所有没放多米诺骨牌的格子的异或值.</p>
+<h2 id="code-3">
+  CODE
+  <a class="heading-link" href="#code-3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;cstring&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;bitset&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">const</span> <span style="color:#e78284">int</span> N <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">25</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> mp[N][N];
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> n, m, tot <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>; <span style="color:#737994;font-style:italic">// tot 图中所有点的异或值
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ca9ee6">struct</span> <span style="color:#e5c890">Point</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e78284">int</span> x, y;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">// 获得当前点之后要处理的下一个点
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>Point <span style="color:#8caaee">getnext</span>(Point x) {
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 到最后一个点, 没有下一个点, 返回 { -1, -1 }
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">if</span> (x.x <span style="color:#99d1db;font-weight:bold">&gt;=</span> m <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> x.y <span style="color:#99d1db;font-weight:bold">&gt;=</span> n) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">return</span> Point { <span style="color:#99d1db;font-weight:bold">-</span><span style="color:#ef9f76">1</span>, <span style="color:#99d1db;font-weight:bold">-</span><span style="color:#ef9f76">1</span> };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">if</span> (x.x <span style="color:#99d1db;font-weight:bold">&gt;=</span> m) <span style="color:#ca9ee6">return</span> Point { <span style="color:#ef9f76">1</span>, x.y <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span> };
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> Point { x.x <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>, x.y };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">// 判断是否超出边界
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#e78284">bool</span> <span style="color:#8caaee">check</span>(Point x) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> x.x <span style="color:#99d1db;font-weight:bold">&gt;=</span> <span style="color:#ef9f76">1</span> <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> x.x <span style="color:#99d1db;font-weight:bold">&lt;=</span> m <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>        x.y <span style="color:#99d1db;font-weight:bold">&gt;=</span> <span style="color:#ef9f76">1</span> <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> x.y <span style="color:#99d1db;font-weight:bold">&lt;=</span> n;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">// vis_i_j 坐标 i, j 的格子是否已经被放了多米诺骨牌
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#e78284">bool</span> vis[N][N];
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> res <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db;font-weight:bold">-</span><span style="color:#ef9f76">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e78284">void</span> <span style="color:#8caaee">dfs</span>(Point curr, <span style="color:#e78284">int</span> score) {
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 统计结果
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    res <span style="color:#99d1db;font-weight:bold">=</span> max(res, score);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 两种放的方式: 水平放和垂直放
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    Point horizontal <span style="color:#99d1db;font-weight:bold">=</span> curr; horizontal.x <span style="color:#99d1db;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>    Point vertical <span style="color:#99d1db;font-weight:bold">=</span> curr; vertical.y <span style="color:#99d1db;font-weight:bold">++</span>;
+</span></span><span style="display:flex;"><span>    Point next <span style="color:#99d1db;font-weight:bold">=</span> getnext(curr);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 边界
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">if</span> (next.x <span style="color:#99d1db;font-weight:bold">==</span> <span style="color:#99d1db;font-weight:bold">-</span><span style="color:#ef9f76">1</span> <span style="color:#99d1db;font-weight:bold">||</span> next.y <span style="color:#99d1db;font-weight:bold">==</span> <span style="color:#99d1db;font-weight:bold">-</span><span style="color:#ef9f76">1</span>) <span style="color:#ca9ee6">return</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 若想放的两格都可以放, 且没有超出边界
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">if</span> (check(horizontal) <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> <span style="color:#99d1db;font-weight:bold">!</span>vis[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> <span style="color:#99d1db;font-weight:bold">!</span>vis[horizontal.y][horizontal.x]) {
+</span></span><span style="display:flex;"><span>	    <span style="color:#737994;font-style:italic">// 如果这里你看不懂的话, 请去学习 dfs 相关知识
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        vis[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">true</span>;
+</span></span><span style="display:flex;"><span>        vis[horizontal.y][horizontal.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">true</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#737994;font-style:italic">// 如上所说, 对每个放了多米诺骨牌的格子再进行一次异或, 就相当于所有没放多米诺骨牌的格子的异或值
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        dfs(next, score <span style="color:#99d1db;font-weight:bold">^</span> mp[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">^</span> mp[horizontal.y][horizontal.x]);
+</span></span><span style="display:flex;"><span>        vis[horizontal.y][horizontal.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">false</span>;
+</span></span><span style="display:flex;"><span>        vis[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 同上
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">if</span> (check(vertical) <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> <span style="color:#99d1db;font-weight:bold">!</span>vis[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> <span style="color:#99d1db;font-weight:bold">!</span>vis[vertical.y][vertical.x]) {
+</span></span><span style="display:flex;"><span>        vis[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">true</span>;
+</span></span><span style="display:flex;"><span>        vis[vertical.y][vertical.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">true</span>;
+</span></span><span style="display:flex;"><span>        dfs(next, score <span style="color:#99d1db;font-weight:bold">^</span> mp[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">^</span> mp[vertical.y][vertical.x]);
+</span></span><span style="display:flex;"><span>        vis[vertical.y][vertical.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">false</span>;
+</span></span><span style="display:flex;"><span>        vis[curr.y][curr.x] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#99d1db">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 还有不放的一种情况
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    dfs(next, score);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e78284">signed</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> n <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> m;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> j <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; j <span style="color:#99d1db;font-weight:bold">&lt;=</span> m; j <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>            cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> mp[i][j];
+</span></span><span style="display:flex;"><span>            <span style="color:#737994;font-style:italic">// 计算 tot
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>            tot <span style="color:#99d1db;font-weight:bold">^=</span> mp[i][j];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 如分析中所说, 对每个放了多米诺骨牌的格子再进行一次异或, 就相当于所有没放多米诺骨牌的格子的异或值
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    dfs({ <span style="color:#ef9f76">1</span>, <span style="color:#ef9f76">1</span> }, tot);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> res;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><em><del>考试的时候时间复杂度算错了痛失425分</del></em></p>
+<hr>
+<h1 id="e---most-valuable-parentheses">
+  <a href="https://atcoder.jp/contests/abc407/tasks/abc407_e"  class="external-link" target="_blank" rel="noopener">E - Most Valuable Parentheses</a>
+  <a class="heading-link" href="#e---most-valuable-parentheses">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>若一个括号序列 $S$ 对于任意 $1 \le i \le |S|$, 其 $S[1..i]$ 中的左括号数 $\ge$ 右括号数, 那它一定可以通过在尾部添加 N 个右括号使该括号序列合法. ($|S|$ 为 $S$ 的长度)</p>
+<p>即对于一个长度为 $2N$ 合法括号序列 $S$, 他一定满足<strong>对于任意 $1 \le i \le 2N$, 其 $S[1..i]$ 中的左括号数 $\ge$ 右括号数.</strong></p>
+<p>也就是说, 我们可以构造这样一个合法的最优括号序列 $S$, 设 $A$ 为题目中给的序列:</p>
+<ul>
+<li>$S_1$ 一定为 <code>(</code>.</li>
+<li>循环 $i = 1+2\cdot1,\ 1+2\cdot2,\ 1+2\cdot3,\ \cdots,\ 1+2\cdot(N-1)$
+<ul>
+<li>将 $A_i, A_{i-1}$ 两个数加入备选列表.</li>
+<li>在备选列表中找出一个数 $A_j$, 将 $S_j$ 设为<em>左括号</em>, 这样就满足了<strong>对于任意 $1 \le i&rsquo; \le i$, 其 $S[1..i&rsquo;]$ 中的左括号数 $\ge$ 右括号数.</strong></li>
+<li>将 $A_j$ 从备选列表删去.</li>
+<li>显然, 如果我们每次 $A_j$ 都选备选列表最大的那个数, 那么对于所有 $A_k$ 满足 $S_k =$ <code>左括号</code> 加起来就是最大的.</li>
+</ul>
+</li>
+<li>$S_{2N}$ 一定为 <code>)</code>.</li>
+</ul>
+<p>因为我们每两个数只加一个左括号, 所以最后右括号数一定等于左括号数.</p>
+<p>我们可以用一个优先队列来维护备选列表最大值, <a href="https://oi-wiki.org/ds/heap/"  class="external-link" target="_blank" rel="noopener">什么是优先队列/堆</a>?</p>
+<h2 id="code-4">
+  CODE
+  <a class="heading-link" href="#code-4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;cstring&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;queue&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ca9ee6">using</span> ll <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#e78284">long</span> <span style="color:#e78284">long</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">// N = 2e5, 2N = 4e5
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">const</span> <span style="color:#e78284">int</span> N <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">4e5</span> <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> n, arr[N], T;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e78284">void</span> <span style="color:#8caaee">solve</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 备选列表
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    priority_queue<span style="color:#99d1db;font-weight:bold">&lt;</span><span style="color:#e78284">int</span><span style="color:#99d1db;font-weight:bold">&gt;</span> Q;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n <span style="color:#99d1db;font-weight:bold">*</span> <span style="color:#ef9f76">2</span>; i <span style="color:#99d1db;font-weight:bold">++</span>) cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> arr[i];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ll res <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n <span style="color:#99d1db;font-weight:bold">*</span> <span style="color:#ef9f76">2</span>; i <span style="color:#99d1db;font-weight:bold">+=</span> <span style="color:#ef9f76">2</span>) {
+</span></span><span style="display:flex;"><span>	    <span style="color:#737994;font-style:italic">// 对于 1 特判, 直接将 arr[1] 加入备选列表, 此时 arr[1] 当然是最大的, 会直接选为 &#39;(&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        <span style="color:#ca9ee6">if</span> (i <span style="color:#99d1db;font-weight:bold">==</span> <span style="color:#ef9f76">1</span>) {
+</span></span><span style="display:flex;"><span>            Q.push(arr[i]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">else</span> {
+</span></span><span style="display:flex;"><span>	        <span style="color:#737994;font-style:italic">// 加入备选列表
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>            Q.push(arr[i]);
+</span></span><span style="display:flex;"><span>            Q.push(arr[i <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#737994;font-style:italic">// 将标为 &#39;(&#39; 的数加到最后的结果
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>		<span style="color:#737994;font-style:italic">// 因为题目并没有要求我们输出最后的括号序列, 所以我们就不用标 &#39;(&#39; 了.
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>        res <span style="color:#99d1db;font-weight:bold">+=</span> Q.top(); Q.pop();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> res <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> <span style="color:#a6d189">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> T;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">while</span> (T <span style="color:#99d1db;font-weight:bold">--</span>) solve();
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="f---sums-of-sliding-window-maximum">
+  <a href="https://atcoder.jp/contests/abc407/tasks/abc407_f"  class="external-link" target="_blank" rel="noopener">F - Sums of Sliding Window Maximum</a>
+  <a class="heading-link" href="#f---sums-of-sliding-window-maximum">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>设 $max$ 为序列 $A$ 的最大值, 其在一个滑动窗口中它为最大值的次数为它对该滑动窗口的贡献</p>
+<p><img src="../ABC407F.gif" alt="ABC407F"></p>
+<p>如图所示, 我们可以发现, $max$ 对从小到大的长度的滑动窗口的贡献值的变化是先小再到大, 之后到某一点不变, 再到某一点开始变小, 类似一个梯形.</p>
+<p>设 $max$ 在 $A$ 中下标为 $i$, 进一步观察, 我们可以发现, 从 $1..i$ 逐渐上升, $(i+1)..(|A|-i+1)$ 不变, 其中 $|A|$ 表示 $A$ 的长度, $(|A|-i+1)..|A|$ 逐渐下降. 这样我们就可以求出 $max$ 对不同长度的滑动窗口的贡献了.</p>
+<p>而我们可以发现, 对于任意一个 $A_i$, 都存在一个区间 $L_i..R_i$, 在该区间内的所有数字内 $A_i$ 为最大, 且该区间为满足前一个条件中最大的区间, 那么 $A_i$ 的对不同长度的滑动窗口的贡献就可以通过上面的方法计算出来了.
+我们可以遍历 $A$ 中所有数, 并计算每个数对不同长度的滑动窗口的贡献, 而对于一个滑动窗口它在每个位置的最大值的总和, 就是所有 $A_i \times A_i \rm 的对该滑动窗口贡献$ 加起来了.</p>
+<p>如何求 $A_i$ 对应的 $L_i..R_i$ 区间? 我们只需要求 $A_i$ 左右侧第一个大于 $A_i$ 的数的下标即可, 若没有就为 $0$ 和 $|A| + 1$. 这一步可以用单调栈求出, <a href="https://oi-wiki.org/ds/monotonous-stack/"  class="external-link" target="_blank" rel="noopener">什么是单调栈</a> / <a href="https://www.luogu.com.cn/problem/P5788"  class="external-link" target="_blank" rel="noopener">例题</a></p>
+<p>但是还是不够快, 我们仍需要 $O(N)$ 的时间来求出一个 $A_i$ 对不同长度的滑动窗口的贡献.</p>
+<p>如果你学过差分的话, 你可能知道在一个数组上加上一个长方形, 即给数组 $L..R$ 加上同一个数, 可以用差分在 $O(1)$ 的时间解决, 其实给一个数组加上梯形的操作也可以通过做两次差分完成, <a href="https://oi-wiki.org/basic/prefix-sum/#%E5%B7%AE%E5%88%86"  class="external-link" target="_blank" rel="noopener">什么是差分</a></p>
+<p>具体地, 设 $L, R$ 为 $A_i$ 左右侧第一个大于 $A_i$ 的数的下标, 若没有就为 $0$ 和 $|A| + 1$, $ans_j$ 为 $A_i$ 对长度为 $j$ 的滑动窗口的贡献, 那么令</p>
+<p>$(ans_1) + 1$
+$(ans_{i-L+1}) - 1$
+$(ans_{R-i+1}) - 1$
+$(ans_{R-L+1})+1$</p>
+<p>如对于动画中的样例</p>
+<p><code>1  0  0 -1  0 -1  0  0  1</code></p>
+<p>接下来执行两次前缀和</p>
+<p><code>1  1  1  0  0 -1 -1 -1  0</code></p>
+<p><code>1  2  3  3  3  2  1  0  0</code></p>
+<p>这样我们就可以在快速给数组加上一个梯形了.</p>
+<p><strong>所以我们进行以下步骤</strong>:</p>
+<ul>
+<li>对数组 $A$ 利用单调栈求对于每一位数 $A_i$ 左右侧第一个大于 $A_i$ 的数的下标 $L,R$, 若没有就为 $0$ 和 $|A| + 1$.</li>
+<li>对于每一个 $A_i$, 令
+$(ans_1) + 1 \times A_i$
+$(ans_{i-L+1}) - 1 \times A_i$
+$(ans_{R-i+1}) - 1 \times A_i$
+$(ans_{R-L+1})+1 \times A_i$
+对于一个滑动窗口它在每个位置的最大值的总和, 就是所有 $A_i \times A_i \rm 的对该滑动窗口贡献$ 加起来, 所以我们干脆在这一步就乘以 $A_i$.</li>
+<li>对 $ans$ 求两次前缀和, 求出答案</li>
+</ul>
+<h2 id="code-5">
+  CODE
+  <a class="heading-link" href="#code-5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#c6d0f5;background-color:#303446;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;iostream&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;cstring&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;algorithm&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;vector&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;deque&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#include</span> <span style="color:#737994;font-weight:bold;font-style:italic">&lt;stack&gt;</span><span style="color:#737994;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">using</span> <span style="color:#ca9ee6">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span><span style="color:#ca9ee6">const</span> <span style="color:#e78284">int</span> N <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">2e5</span> <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> arr[N], n, l[N], r[N];
+</span></span><span style="display:flex;"><span><span style="color:#e78284">int</span> ans[N];
+</span></span><span style="display:flex;"><span><span style="color:#e78284">signed</span> <span style="color:#8caaee">main</span>() {
+</span></span><span style="display:flex;"><span>    cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        cin <span style="color:#99d1db;font-weight:bold">&gt;&gt;</span> arr[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stack<span style="color:#99d1db;font-weight:bold">&lt;</span><span style="color:#e78284">int</span><span style="color:#99d1db;font-weight:bold">&gt;</span> stk;
+</span></span><span style="display:flex;"><span>    <span style="color:#737994;font-style:italic">// 将左右边界设到最高, 防止一个数左右没有比它更大的数
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    arr[n <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1e9</span>;
+</span></span><span style="display:flex;"><span>    arr[<span style="color:#ef9f76">0</span>] <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1e9</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#737994;font-style:italic">// 单调栈经典操作
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">while</span> (<span style="color:#99d1db;font-weight:bold">!</span>stk.empty() <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> arr[stk.top()] <span style="color:#99d1db;font-weight:bold">&lt;=</span> arr[i]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#e78284">int</span> k <span style="color:#99d1db;font-weight:bold">=</span> stk.top(); stk.pop();
+</span></span><span style="display:flex;"><span>            r[k] <span style="color:#99d1db;font-weight:bold">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        stk.push(i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 清空栈
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">while</span> (<span style="color:#99d1db;font-weight:bold">!</span>stk.empty()) stk.pop();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 单调栈经典操作 2
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> n; i <span style="color:#99d1db;font-weight:bold">&gt;=</span> <span style="color:#ef9f76">0</span>; i <span style="color:#99d1db;font-weight:bold">--</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ca9ee6">while</span> (<span style="color:#99d1db;font-weight:bold">!</span>stk.empty() <span style="color:#99d1db;font-weight:bold">&amp;&amp;</span> arr[stk.top()] <span style="color:#99d1db;font-weight:bold">&lt;</span> arr[i]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#e78284">int</span> k <span style="color:#99d1db;font-weight:bold">=</span> stk.top(); stk.pop();
+</span></span><span style="display:flex;"><span>            l[k] <span style="color:#99d1db;font-weight:bold">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        stk.push(i);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>	    <span style="color:#737994;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">		(ans[1])     += 1 * A[i]
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">		(ans[i-L+1]) -= 1 * A[i]
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">		(ans[R-i+1]) -= 1 * A[i]
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">		(ans[R-L+1]) += 1 * A[i]
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic">	    */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e78284">int</span> L <span style="color:#99d1db;font-weight:bold">=</span> i <span style="color:#99d1db;font-weight:bold">-</span> l[i], R <span style="color:#99d1db;font-weight:bold">=</span> r[i] <span style="color:#99d1db;font-weight:bold">-</span> i;
+</span></span><span style="display:flex;"><span>        ans[<span style="color:#ef9f76">1</span>] <span style="color:#99d1db;font-weight:bold">+=</span> arr[i];
+</span></span><span style="display:flex;"><span>        ans[L <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>] <span style="color:#99d1db;font-weight:bold">-=</span> arr[i];
+</span></span><span style="display:flex;"><span>        ans[R <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>] <span style="color:#99d1db;font-weight:bold">-=</span> arr[i];
+</span></span><span style="display:flex;"><span>        ans[R <span style="color:#99d1db;font-weight:bold">+</span> L <span style="color:#99d1db;font-weight:bold">+</span> <span style="color:#ef9f76">1</span>] <span style="color:#99d1db;font-weight:bold">+=</span> arr[i];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#737994;font-style:italic">// 两次前缀和
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        ans[i] <span style="color:#99d1db;font-weight:bold">+=</span> ans[i <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        ans[i] <span style="color:#99d1db;font-weight:bold">+=</span> ans[i <span style="color:#99d1db;font-weight:bold">-</span> <span style="color:#ef9f76">1</span>];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#737994;font-style:italic">// 答案输出
+</span></span></span><span style="display:flex;"><span><span style="color:#737994;font-style:italic"></span>    <span style="color:#ca9ee6">for</span> (<span style="color:#e78284">int</span> i <span style="color:#99d1db;font-weight:bold">=</span> <span style="color:#ef9f76">1</span>; i <span style="color:#99d1db;font-weight:bold">&lt;=</span> n; i <span style="color:#99d1db;font-weight:bold">++</span>) {
+</span></span><span style="display:flex;"><span>        cout <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> ans[i] <span style="color:#99d1db;font-weight:bold">&lt;&lt;</span> <span style="color:#a6d189">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ca9ee6">return</span> <span style="color:#ef9f76">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<p>本文图像文字内容采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en"  class="external-link" target="_blank" rel="noopener">CC BY-SA 4.0</a> 许可协议进行许可, 代码内容采用 <a href="http://www.apache.org/licenses/LICENSE-2.0"  class="external-link" target="_blank" rel="noopener">Apache License, Version 2.0</a> 许可证进行许可.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.4/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+  </section>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+    2025
+     Question Mark (Ybmzx) 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
